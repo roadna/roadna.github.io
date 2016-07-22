@@ -1,0 +1,679 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="HEXO," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
+为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows->Server(nginx+hexo)?">
+<meta property="og:url" content="http://yoursite.com/2016/05/08/Windows-Server-nginx-hexo/index.html">
+<meta property="og:site_name" content="roadna">
+<meta property="og:description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
+为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
+<meta property="og:updated_time" content="2016-07-22T03:25:41.330Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows->Server(nginx+hexo)?">
+<meta name="twitter:description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
+为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <title> Windows->Server(nginx+hexo)? | roadna </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">roadna</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">路哪</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Windows->Server(nginx+hexo)?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-08T10:21:58+08:00" content="2016-05-08">
+              2016-05-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/08/Windows-Server-nginx-hexo/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/08/Windows-Server-nginx-hexo/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。</p>
+<h2 id="为什么要用静态框架呢？"><a href="#为什么要用静态框架呢？" class="headerlink" title="为什么要用静态框架呢？"></a>为什么要用静态框架呢？</h2><p>对于访问量、功能需求、界面复杂程度都不大的个人博客而言，静态博客框架具有轻量、快速的优点，首先LAMP中的MySQL、PHP不必要安装，二则Apache可用更轻量的Nginx代替，这样ECS服务器上仅仅需要安装运行Nginx服务器即可！</p>
+<p>静态框架搭建的博客常常被部署在github pages上，部署在服务器上的例子比较少，但道理是相通的。静态博客框架常见的有jekyll和hexo，在网上看到很多二者对比的帖子和从jekyll向hexo迁移的帖子，最终决定使用插件支持丰富、生成静态页面快速、支持Markdown的hexo（hexo的第三方主题丰富，其中不少简约派很合我胃口）。<br><a id="more"></a></p>
+<h2 id="为什么不在本地安装Hexo环境？"><a href="#为什么不在本地安装Hexo环境？" class="headerlink" title="为什么不在本地安装Hexo环境？"></a>为什么不在本地安装Hexo环境？</h2><p>原因很简单，其实是一开始我没搞清楚这个博客框架的工作逻辑，以为要安在服务器上，其实服务器需要的仅仅是<code>hexo generat</code>生成的<code>/public</code>文件夹的内容，只需要<code>hexo deploy</code>部署到服务器上即可。既已行差踏错，只好将错就错。其实这样做的好处也有，我可以跨平台来撰写我的博客，不管是PC、安卓还是IOS，只需一个ssh终端即可，不需要重复地配置环境。</p>
+<p>在这里遇到了一个比较重要的问题，几经搜索之后尚未解决：Nginx服务器的默认目录修改不生效，在<code>nginx/sites-enabled</code>下的配置文件修改了root目录后，reload后并没有生效。网上搜索问题找到的答案都不能解决问题，推测问题可能是权限，弄得我头昏脑胀。但如果每次hexo g后都要用cp命令来复制public文件夹又非常麻烦，最终受到sites-avaliable和sites-enabled之间关于<code>ln -s</code>软链接的启发，有了如下的非常不可取的做法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ln public/* /usr/share/nginx/html/</div></pre></td></tr></table></figure>
+<h2 id="Hexo-themes"><a href="#Hexo-themes" class="headerlink" title="Hexo themes"></a>Hexo themes</h2><p>Hexo官方默认的主题是Landscape，简洁明了，样式比较简陋，可定制程度也不高。于是搜索到了知乎上的一个问题：<a href="https://www.zhihu.com/question/24422335" target="_blank" rel="external">有哪些好看的Hexo主题？</a>，2015-04-30的一个回答列出了一个榜单，于是我就直接点开了第一名，发现很合胃口，于是就选择了这款国人IIssNan开发的NexT主题：<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">hexo-theme-next</a>。</p>
+<p>这款主题的配置文件有很多，能对很多样式进行个人定制，十分好评。</p>
+<p>有几个地方可以注意一下：</p>
+<ul>
+<li><p>修改.yml文件时，冒号:后面一定要加一个空格，否则报错。</p>
+</li>
+<li><p>修改字体配置后若<code>hexo sever</code>预览生效而<code>hexo g</code>后未生效，可以先<code>hexo clean</code>一下再生成。本博客用的字体是参考NexT开发者博客的字体：global: Monda, logo: Lobster Two, codes: PT Mono .</p>
+</li>
+<li><p>诚如你所见，文章没有段首缩进，可能NexT开发者没有这个习惯，但我个人看着实在难受，网上搜索得到的方法是修改CSS/*styl文件，加上一句<code>.entry{text-indent:2em;}</code>，但NexT的styl文件有很多很多很多，我并没有找到某个特定的文件，加上对CSS不了解，尝试在几个.styl文件下增添了该语句也未见生效。</p>
+</li>
+</ul>
+<h2 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h2><p>Hexo是支持Markdown语法的，Markdown的使用非常方便，本文就是在PuTTY上vim *.md进行编写的，当然不能实时预览，出错的话要重新vim一下也不是很方便。</p>
+<p>有一个解决办法是在本地用支持Markdown语法的编辑器里编写，再copy到服务器上的.md文件里。这里推荐Windows平台的<a href="www.typora.io">Typora</a>，简洁明了，支持实时预览。这款编辑器同样适配MAC。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HEXO/" rel="tag">#HEXO</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/09/try-flypy/" rel="prev" title="试用小鹤双拼">
+                试用小鹤双拼 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/05/08/Windows-Server-nginx-hexo/"
+           data-title="Windows->Server(nginx+hexo)?" data-url="http://yoursite.com/2016/05/08/Windows-Server-nginx-hexo/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Yong Cai" />
+          <p class="site-author-name" itemprop="name">Yong Cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/vincechai" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.v2ex.com/?r=roadna" target="_blank" title="v2ex">
+                  
+                    <i class="fa fa-fw fa-vimeo"></i>
+                  
+                  v2ex
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用静态框架呢？"><span class="nav-number">1.</span> <span class="nav-text">为什么要用静态框架呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么不在本地安装Hexo环境？"><span class="nav-number">2.</span> <span class="nav-text">为什么不在本地安装Hexo环境？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hexo-themes"><span class="nav-number">3.</span> <span class="nav-text">Hexo themes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Markdown"><span class="nav-number">4.</span> <span class="nav-text">Markdown</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yong Cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"roadna"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+</body>
+</html>
