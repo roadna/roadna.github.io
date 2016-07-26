@@ -112,7 +112,7 @@
 配置Java环境，安装官方IDE：Android Studio -bundle（含SDK）。   –16/6/27
 
 开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而">
-<meta property="og:updated_time" content="2016-07-22T03:25:36.579Z">
+<meta property="og:updated_time" content="2016-07-26T16:25:55.777Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android Dev Learning">
 <meta name="twitter:description" content="简单记录一下安卓开发的学习过程开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)
@@ -332,6 +332,7 @@
 <li><p>开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而非书中的Activity，因此在某些地方会有差异。</p>
 </li>
 </ol>
+<a id="more"></a>
 <blockquote>
 <p>隐藏标题栏：<code>requestWindowFeature(Window.FEATURE_NO_TITLE);</code> -&gt; <code>getSupportActionBar().hide();</code>其中ActionBar为新版本引入的特性。</p>
 <p>onCreate()中定义Button监听器，中间加入<code>if(button != null)</code>避免编译时的空指针警告。另外Button的触发事件也可以在布局文件xml文件<code>onClick=&quot;FuntionName&quot;</code>指定activity.java里定义的事件函数。</p>

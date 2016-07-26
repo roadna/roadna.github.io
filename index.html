@@ -414,8 +414,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>简单记录一下安卓开发的学习过程<br>开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)</p>
 </blockquote>
 <ol>
@@ -424,17 +423,11 @@
 <li><p>开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而非书中的Activity，因此在某些地方会有差异。</p>
 </li>
 </ol>
-<blockquote>
-<p>隐藏标题栏：<code>requestWindowFeature(Window.FEATURE_NO_TITLE);</code> -&gt; <code>getSupportActionBar().hide();</code>其中ActionBar为新版本引入的特性。</p>
-<p>onCreate()中定义Button监听器，中间加入<code>if(button != null)</code>避免编译时的空指针警告。另外Button的触发事件也可以在布局文件xml文件<code>onClick=&quot;FuntionName&quot;</code>指定activity.java里定义的事件函数。</p>
-<p>Menu：由于ActionBar的存在，不建议继续使用传统Menu，且新设备极少拥有menu按键。</p>
-<p>onBackPressed(): 在AppCompatActivity类中无此函数，具体实现方法尚待发现，此处可研究“再次点击返回确认退出”功能。</p>
-</blockquote>
-<ol>
-<li>BroadcastBestPractice强制用户下线项目中，出现如下错误<code>Unable to start receiver ... You need to use a Theme.AppCompat</code>但实际情况是广播接收器已经运行并Log.d信息了，而AlertDialog却无法生成，导致应用程序已停止运行的错误。查阅了StackOverflow的问答后，成功消除了BUG。错误原因竟然和import的库有关，AS默认<code>import android.support.v7.app.AlertDialog</code>，改为<code>import android.app.AlertDialog</code>后解决了问题，真是诡异。而到了6.0中，系统对TYPE_SYSTEM_ALERT弹出类型有了更大的限制，具体参考<a href="http://blog.csdn.net/tears2014/article/details/51030826" target="_blank" rel="external">这个博客文章</a>。 (问题已解决：见<a href="http://www.v2ex.com/t/292061" target="_blank" rel="external">V2EX问答</a>)</li>
-</ol>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/06/27/Android-Dev-Learning/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
