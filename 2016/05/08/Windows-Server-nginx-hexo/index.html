@@ -96,19 +96,22 @@
 
 
 
-<meta name="description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
-为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
+<meta name="description" content="updated 16/8/3：已迁移至github pages。另：在阿里云/万网注册备案的域名，必须解析到阿里云的主机，CNAME到github pages是会被禁止解析,吊销备案的,故把域名转出到namesilo，希望能顺利转出。
+
+当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows->Server(nginx+hexo)?">
 <meta property="og:url" content="http://yoursite.com/2016/05/08/Windows-Server-nginx-hexo/index.html">
 <meta property="og:site_name" content="roadna">
-<meta property="og:description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
-为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
-<meta property="og:updated_time" content="2016-07-22T03:25:41.330Z">
+<meta property="og:description" content="updated 16/8/3：已迁移至github pages。另：在阿里云/万网注册备案的域名，必须解析到阿里云的主机，CNAME到github pages是会被禁止解析,吊销备案的,故把域名转出到namesilo，希望能顺利转出。
+
+当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPr">
+<meta property="og:updated_time" content="2016-08-03T06:56:56.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows->Server(nginx+hexo)?">
-<meta name="twitter:description" content="当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。
-为什么要用静态框架呢？对于访问量、功能需求、界面复杂程度都不大的个人博客而言">
+<meta name="twitter:description" content="updated 16/8/3：已迁移至github pages。另：在阿里云/万网注册备案的域名，必须解析到阿里云的主机，CNAME到github pages是会被禁止解析,吊销备案的,故把域名转出到namesilo，希望能顺利转出。
+
+当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPr">
 
 
 
@@ -311,7 +314,10 @@
       
 
       
-        <p>当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。</p>
+        <ul>
+<li>updated 16/8/3：已迁移至github pages。另：在阿里云/万网注册备案的域名，必须解析到阿里云的主机，CNAME到github pages是会被禁止解析,吊销备案的,故把域名转出到namesilo，希望能顺利转出。</li>
+</ul>
+<p>当我购买了阿里云学生优惠计划的ECS服务器之后,便开始有了搭建属于自己的个人博客的想法。因为并没有学习过网页前端设计，也没有很重的需求需要LAMP+WordPress，二来学生版的ECS也就1核1G的配置，所以目标就定在了“轻”、“快”上。有了以前在树莓派上搭建LAMP环境的经验，这次在ECS上搭建博客就相比轻松了很多。</p>
 <h2 id="为什么要用静态框架呢？"><a href="#为什么要用静态框架呢？" class="headerlink" title="为什么要用静态框架呢？"></a>为什么要用静态框架呢？</h2><p>对于访问量、功能需求、界面复杂程度都不大的个人博客而言，静态博客框架具有轻量、快速的优点，首先LAMP中的MySQL、PHP不必要安装，二则Apache可用更轻量的Nginx代替，这样ECS服务器上仅仅需要安装运行Nginx服务器即可！</p>
 <p>静态框架搭建的博客常常被部署在github pages上，部署在服务器上的例子比较少，但道理是相通的。静态博客框架常见的有jekyll和hexo，在网上看到很多二者对比的帖子和从jekyll向hexo迁移的帖子，最终决定使用插件支持丰富、生成静态页面快速、支持Markdown的hexo（hexo的第三方主题丰富，其中不少简约派很合我胃口）。<br><a id="more"></a></p>
 <h2 id="为什么不在本地安装Hexo环境？"><a href="#为什么不在本地安装Hexo环境？" class="headerlink" title="为什么不在本地安装Hexo环境？"></a>为什么不在本地安装Hexo环境？</h2><p>原因很简单，其实是一开始我没搞清楚这个博客框架的工作逻辑，以为要安在服务器上，其实服务器需要的仅仅是<code>hexo generat</code>生成的<code>/public</code>文件夹的内容，只需要<code>hexo deploy</code>部署到服务器上即可。既已行差踏错，只好将错就错。其实这样做的好处也有，我可以跨平台来撰写我的博客，不管是PC、安卓还是IOS，只需一个ssh终端即可，不需要重复地配置环境。</p>
