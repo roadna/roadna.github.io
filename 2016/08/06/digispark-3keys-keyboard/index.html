@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android," />
+  <meta name="keywords" content="硬件," />
 
 
 
@@ -96,31 +96,30 @@
 
 
 
-<meta name="description" content="简单记录一下安卓开发的学习过程开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)
+<meta name="description" content="迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？
+不如做一个密码生成器吧。按下按键输入特定字符串，那么你长长的密码就不用一个一个字符费劲地输入了。3个按键，3+6+6=15种不同的组合， 3种不同长度。
 
-
-配置Java环境，安装官方IDE：Android Studio -bundle（含SDK）。   –16/6/27
-
-开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而">
+硬件：淘宝CJMCU ATtiny85 micro-usb开发板、按键、面包板、杜邦线、10kΩ电阻
+软件环境：win10-64位，Arduino1.6.10">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android Dev Learning">
-<meta property="og:url" content="http://yoursite.com/2016/06/27/Android-Dev-Learning/index.html">
+<meta property="og:title" content="使用digispark ATtiny85制作一个简易三键键盘">
+<meta property="og:url" content="http://yoursite.com/2016/08/06/digispark-3keys-keyboard/index.html">
 <meta property="og:site_name" content="roadna">
-<meta property="og:description" content="简单记录一下安卓开发的学习过程开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)
+<meta property="og:description" content="迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？
+不如做一个密码生成器吧。按下按键输入特定字符串，那么你长长的密码就不用一个一个字符费劲地输入了。3个按键，3+6+6=15种不同的组合， 3种不同长度。
 
-
-配置Java环境，安装官方IDE：Android Studio -bundle（含SDK）。   –16/6/27
-
-开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而">
-<meta property="og:updated_time" content="2016-07-26T16:25:55.777Z">
+硬件：淘宝CJMCU ATtiny85 micro-usb开发板、按键、面包板、杜邦线、10kΩ电阻
+软件环境：win10-64位，Arduino1.6.10">
+<meta property="og:image" content="http://o6x2509hk.bkt.clouddn.com/digispark.jpg">
+<meta property="og:updated_time" content="2016-08-06T14:02:18.618Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android Dev Learning">
-<meta name="twitter:description" content="简单记录一下安卓开发的学习过程开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)
+<meta name="twitter:title" content="使用digispark ATtiny85制作一个简易三键键盘">
+<meta name="twitter:description" content="迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？
+不如做一个密码生成器吧。按下按键输入特定字符串，那么你长长的密码就不用一个一个字符费劲地输入了。3个按键，3+6+6=15种不同的组合， 3种不同长度。
 
-
-配置Java环境，安装官方IDE：Android Studio -bundle（含SDK）。   –16/6/27
-
-开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而">
+硬件：淘宝CJMCU ATtiny85 micro-usb开发板、按键、面包板、杜邦线、10kΩ电阻
+软件环境：win10-64位，Arduino1.6.10">
+<meta name="twitter:image" content="http://o6x2509hk.bkt.clouddn.com/digispark.jpg">
 
 
 
@@ -141,7 +140,7 @@
 
 
 
-  <title> Android Dev Learning | roadna </title>
+  <title> 使用digispark ATtiny85制作一个简易三键键盘 | roadna </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -271,7 +270,7 @@
             
             
               
-                Android Dev Learning
+                使用digispark ATtiny85制作一个简易三键键盘
               
             
           </h1>
@@ -283,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-27T00:28:53+08:00" content="2016-06-27">
-              2016-06-27
+            <time itemprop="dateCreated" datetime="2016-08-06T21:31:02+08:00" content="2016-08-06">
+              2016-08-06
             </time>
           </span>
 
@@ -294,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/27/Android-Dev-Learning/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/27/Android-Dev-Learning/" itemprop="commentsCount"></span>
+                <a href="/2016/08/06/digispark-3keys-keyboard/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/06/digispark-3keys-keyboard/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,25 +322,30 @@
       
 
       
-        <blockquote>
-<p>简单记录一下安卓开发的学习过程<br>开发环境:Android Studio 2.1.2, API23(6.0)，测试手机MotoX2013，API22(5.1)</p>
-</blockquote>
-<ol>
-<li><p>配置Java环境，安装官方IDE：Android Studio -bundle（含SDK）。   –16/6/27</p>
-</li>
-<li><p>开发用最小SDK版本为4.4，界面预览使用API23（6.x），默认生成的活动类型为AppCompatActivity而非书中的Activity，因此在某些地方会有差异。</p>
-</li>
-</ol>
-<a id="more"></a>
-<blockquote>
-<p>隐藏标题栏：<code>requestWindowFeature(Window.FEATURE_NO_TITLE);</code> -&gt; <code>getSupportActionBar().hide();</code>其中ActionBar为新版本引入的特性。</p>
-<p>onCreate()中定义Button监听器，中间加入<code>if(button != null)</code>避免编译时的空指针警告。另外Button的触发事件也可以在布局文件xml文件<code>onClick=&quot;FuntionName&quot;</code>指定activity.java里定义的事件函数。</p>
-<p>Menu：由于ActionBar的存在，不建议继续使用传统Menu，且新设备极少拥有menu按键。</p>
-<p>onBackPressed(): 在AppCompatActivity类中无此函数，具体实现方法尚待发现，此处可研究“再次点击返回确认退出”功能。</p>
-</blockquote>
-<ol>
-<li>BroadcastBestPractice强制用户下线项目中，出现如下错误<code>Unable to start receiver ... You need to use a Theme.AppCompat</code>但实际情况是广播接收器已经运行并Log.d信息了，而AlertDialog却无法生成，导致应用程序已停止运行的错误。查阅了StackOverflow的问答后，成功消除了BUG。错误原因竟然和import的库有关，AS默认<code>import android.support.v7.app.AlertDialog</code>，改为<code>import android.app.AlertDialog</code>后解决了问题，真是诡异。而到了6.0中，系统对TYPE_SYSTEM_ALERT弹出类型有了更大的限制，具体参考<a href="http://blog.csdn.net/tears2014/article/details/51030826" target="_blank" rel="external">这个博客文章</a>。 (问题已解决：见<a href="http://www.v2ex.com/t/292061" target="_blank" rel="external">V2EX问答</a>)</li>
-</ol>
+        <p><img src="http://o6x2509hk.bkt.clouddn.com/digispark.jpg" alt=""></p>
+<ul>
+<li>迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？</li>
+<li>不如做一个密码生成器吧。按下按键输入特定字符串，那么你长长的密码就不用一个一个字符费劲地输入了。3个按键，3+6+6=15种不同的组合， 3种不同长度。</li>
+<li></li>
+<li>硬件：淘宝CJMCU ATtiny85 micro-usb开发板、按键、面包板、杜邦线、10kΩ电阻</li>
+<li>软件环境：win10-64位，Arduino1.6.10</li>
+</ul>
+<h3 id="环境与驱动"><a href="#环境与驱动" class="headerlink" title="环境与驱动"></a>环境与驱动</h3><p>根据官方wiki即可，<a href="http://digistump.com/wiki/digispark/tutorials/connecting" target="_blank" rel="external">点此跳转</a> </p>
+<p>高于1.6.6的Arduino或使用windows而非mac、linux，需要下载压缩包驱动，此处安装驱动显示其中一个usber驱动安装失败，列表里共4个驱动。</p>
+<p>上传sketch到芯片时，需要把开发板重新插入USB，开发板接入电源后进入bootloader，检测到上传请求后接收sketch，由于芯片限制，无在线上传的功能，略麻烦。</p>
+<h3 id="了解硬件"><a href="#了解硬件" class="headerlink" title="了解硬件"></a>了解硬件</h3><p>首先看官方的schematic，<a href="https://s3.amazonaws.com/digistump-resources/files/97a1bb28_DigisparkSchematic.pdf" target="_blank" rel="external">点此跳转</a></p>
+<p>PB3、PB4为USB数据口，故当使用USB相关的功能时，就不能使用这两个IO口连接别的电路。<a href="http://digistump.com/wiki/digispark/tutorials/basics" target="_blank" rel="external">点此见更多IO限制</a></p>
+<p>PB5(NRES)为RESET口，接地时RESET。该口也可以用作普通IO，需要更改熔丝位，要用ISP编程器，了解不多还不敢动手。<a href="http://blog.sina.com.cn/s/blog_6566538d0102w6qk.html" target="_blank" rel="external">具体见此博客文</a></p>
+<p>那么我们就还剩下PB0、1、2三个口可以用作外部电路。</p>
+<h3 id="外部电路"><a href="#外部电路" class="headerlink" title="外部电路"></a>外部电路</h3><p>PB0、PB1、PB2各自接一个接地电阻，再连接开关和5V电源，组成一个经典的高电平触发的按键电路。</p>
+<h3 id="DigiKeyboard库"><a href="#DigiKeyboard库" class="headerlink" title="DigiKeyboard库"></a>DigiKeyboard库</h3><p>官方自带的库，包括sendKeyStroke()、print()、println()、update()等方法。</p>
+<p>···</p>
+<p>#include “DigiKeyboard.h”</p>
+<p>const int buttonPin[] = {0,1,2};<br>int buttonState[] = {0,0,0};<br>char* myStrings[] = {“string1”, “string2”, “string3”};</p>
+<p>void setup() {<br>  // put your setup code here, to run once:<br>  for(int i = 0; i &lt; 3; i++){<br>    pinMode(buttonPin[i], INPUT);<br>  }<br>  DigiKeyboard.update();<br>}</p>
+<p>void loop() {<br>  // put your main code here, to run repeatedly:<br>  DigiKeyboard.sendKeyStroke(0);<br>  for(int j = 0; j &lt; 3; j++){<br>    buttonState[j] = digitalRead(buttonPin[j]);<br>    if (buttonState[j] == HIGH){    //未添加按键防抖<br>      DigiKeyboard.print(myStrings[j]);     //println()含换行符<br>    }<br>    //DigiKeyboard.delay(50);<br>    DigiKeyboard.update();    //维持USB通信<br>    DigiKeyboard.sendKeyStroke(0);<br>  }<br>}<br>···</p>
+<p>按住某一按键，观察输出的频率，发现频率并不快，故省去了延时DigiKeyboard.delay(50)。</p>
+<h3 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h3><p>按下某一按键，在电脑里键入一组字符，不换行。抖动影响比较小，未见意外情况。可加入电容和防抖算法来进行改善，<a href="http://www.geek-workshop.com/thread-74-1-1.html" target="_blank" rel="external">见此链接</a></p>
 
       
     </div>
@@ -364,7 +368,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/硬件/" rel="tag">#硬件</a>
           
         </div>
       
@@ -373,17 +377,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/24/reading-note-design-for-everything1/" rel="next" title="读书笔记--《设计心理学1》">
-                <i class="fa fa-chevron-left"></i> 读书笔记--《设计心理学1》
+              <a href="/2016/07/08/QQ-domain-email/" rel="next" title="QQ邮箱的域名邮箱功能">
+                <i class="fa fa-chevron-left"></i> QQ邮箱的域名邮箱功能
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/08/QQ-domain-email/" rel="prev" title="QQ邮箱的域名邮箱功能">
-                QQ邮箱的域名邮箱功能 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -409,8 +409,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/27/Android-Dev-Learning/"
-           data-title="Android Dev Learning" data-url="http://yoursite.com/2016/06/27/Android-Dev-Learning/">
+      <div class="ds-thread" data-thread-key="2016/08/06/digispark-3keys-keyboard/"
+           data-title="使用digispark ATtiny85制作一个简易三键键盘" data-url="http://yoursite.com/2016/08/06/digispark-3keys-keyboard/">
       </div>
     
   </div>
@@ -514,7 +514,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境与驱动"><span class="nav-number">1.</span> <span class="nav-text">环境与驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#了解硬件"><span class="nav-number">2.</span> <span class="nav-text">了解硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外部电路"><span class="nav-number">3.</span> <span class="nav-text">外部电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DigiKeyboard库"><span class="nav-number">4.</span> <span class="nav-text">DigiKeyboard库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现效果"><span class="nav-number">5.</span> <span class="nav-text">实现效果</span></a></li></ol></div>
             
           </div>
         </section>
