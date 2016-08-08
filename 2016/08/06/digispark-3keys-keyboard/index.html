@@ -111,7 +111,8 @@
 硬件：淘宝CJMCU ATtiny85 micro-usb开发板、按键、面包板、杜邦线、10kΩ电阻
 软件环境：win10-64位，Arduino1.6.1">
 <meta property="og:image" content="http://o6x2509hk.bkt.clouddn.com/digispark.jpg">
-<meta property="og:updated_time" content="2016-08-06T14:05:35.775Z">
+<meta property="og:image" content="http://o6x2509hk.bkt.clouddn.com/3keyboard.jpg">
+<meta property="og:updated_time" content="2016-08-08T09:42:52.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用digispark ATtiny85制作一个简易三键键盘">
 <meta name="twitter:description" content="迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？
@@ -345,6 +346,7 @@
 <p>PB5(NRES)为RESET口，接地时RESET。该口也可以用作普通IO，需要更改熔丝位，要用ISP编程器，了解不多还不敢动手。<a href="http://blog.sina.com.cn/s/blog_6566538d0102w6qk.html" target="_blank" rel="external">具体见此博客文</a></p>
 <p>那么我们就还剩下PB0、1、2三个口可以用作外部电路。</p>
 <h3 id="外部电路"><a href="#外部电路" class="headerlink" title="外部电路"></a>外部电路</h3><p>PB0、PB1、PB2各自接一个接地电阻，再连接开关和5V电源，组成一个经典的高电平触发的按键电路。</p>
+<p><img src="http://o6x2509hk.bkt.clouddn.com/3keyboard.jpg" alt="开始以为PB5默认为普通IO口"></p>
 <h3 id="DigiKeyboard库"><a href="#DigiKeyboard库" class="headerlink" title="DigiKeyboard库"></a>DigiKeyboard库</h3><p>官方自带的库，包括sendKeyStroke()、print()、println()、update()等方法。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">#include &quot;DigiKeyboard.h&quot;</div><div class="line"></div><div class="line">const int buttonPin[] = &#123;0,1,2&#125;;</div><div class="line">int buttonState[] = &#123;0,0,0&#125;;</div><div class="line">char* myStrings[] = &#123;&quot;string1&quot;, &quot;string2&quot;, &quot;string3&quot;&#125;;</div><div class="line"></div><div class="line">void setup() &#123;</div><div class="line">  // put your setup code here, to run once:</div><div class="line">  for(int i = 0; i &lt; 3; i++)&#123;</div><div class="line">    pinMode(buttonPin[i], INPUT);  </div><div class="line">  &#125;</div><div class="line">  DigiKeyboard.update();</div><div class="line">&#125;</div><div class="line"></div><div class="line">void loop() &#123;</div><div class="line">  // put your main code here, to run repeatedly:</div><div class="line">  DigiKeyboard.sendKeyStroke(0);</div><div class="line">  for(int j = 0; j &lt; 3; j++)&#123;</div><div class="line">    buttonState[j] = digitalRead(buttonPin[j]);</div><div class="line">    if (buttonState[j] == HIGH)&#123;    //未添加按键防抖</div><div class="line">      DigiKeyboard.print(myStrings[j]);     //println()含换行符</div><div class="line">    &#125;</div><div class="line">    //DigiKeyboard.delay(50);</div><div class="line">    DigiKeyboard.update();    //维持USB通信</div><div class="line">    DigiKeyboard.sendKeyStroke(0);</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>按住某一按键，观察输出的频率，发现频率并不快，故省去了延时DigiKeyboard.delay(50)。</p>
