@@ -112,7 +112,7 @@
 软件环境：win10-64位，Arduino1.6.1">
 <meta property="og:image" content="http://o6x2509hk.bkt.clouddn.com/digispark.jpg">
 <meta property="og:image" content="http://o6x2509hk.bkt.clouddn.com/3keyboard.jpg">
-<meta property="og:updated_time" content="2016-08-08T09:42:52.771Z">
+<meta property="og:updated_time" content="2016-08-12T13:10:15.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用digispark ATtiny85制作一个简易三键键盘">
 <meta name="twitter:description" content="迷你的ATtiny85芯片，6个可用IO，自带的keyboard库，能干点什么？
@@ -343,7 +343,7 @@
 <a id="more"></a>
 <h3 id="环境与驱动"><a href="#环境与驱动" class="headerlink" title="环境与驱动"></a>环境与驱动</h3><p>根据官方wiki即可，<a href="http://digistump.com/wiki/digispark/tutorials/connecting" target="_blank" rel="external">点此跳转</a> </p>
 <p>高于1.6.6的Arduino或使用windows而非mac、linux，需要下载压缩包驱动，此处安装驱动显示其中一个usber驱动安装失败，列表里共4个驱动。</p>
-<p>上传sketch到芯片时，需要把开发板重新插入USB，开发板接入电源后进入bootloader，检测到上传请求后接收sketch，由于芯片限制，无在线上传的功能，略麻烦。</p>
+<p>上传sketch到芯片时，需要把开发板重新插入USB，开发板接入电源后进入bootloader，检测到上传请求后接收sketch，由于芯片限制，无在线上传的功能，略麻烦。但由于PB5的RESET功能，可以把PB5连接一个按键再接地，实现一个实体RESET按键的功能。</p>
 <h3 id="了解硬件"><a href="#了解硬件" class="headerlink" title="了解硬件"></a>了解硬件</h3><p>首先看官方的schematic，<a href="https://s3.amazonaws.com/digistump-resources/files/97a1bb28_DigisparkSchematic.pdf" target="_blank" rel="external">点此跳转</a></p>
 <p>PB3、PB4为USB数据口，故当使用USB相关的功能时，就不能使用这两个IO口连接别的电路。<a href="http://digistump.com/wiki/digispark/tutorials/basics" target="_blank" rel="external">点此见更多IO限制</a></p>
 <p>PB5(NRES)为RESET口，接地时RESET。该口也可以用作普通IO，需要更改熔丝位，要用ISP编程器，了解不多还不敢动手。<a href="http://blog.sina.com.cn/s/blog_6566538d0102w6qk.html" target="_blank" rel="external">具体见此博客文</a></p>
